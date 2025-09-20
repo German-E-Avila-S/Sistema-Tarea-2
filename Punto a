@@ -1,0 +1,63 @@
+% Parámetros de simulación
+tiempo = 0:0.0001:0.05;   % Vector de tiempo desde 0 hasta 0.05 segundos, con incremento de 0.0001 s (0.1 ms).
+                          % Este será el eje X para todas las señales.
+
+% Señal 1: Coseno 1.2 Vpp, 15 Hz
+amp_cos = 1.2/2;          % Se calcula la amplitud pico a partir del valor pico a pico (Vpp = 1.2, entonces Vp = 0.6).
+frec_cos = 15;            % Frecuencia de la señal coseno (15 Hz).
+senal_cos = amp_cos * cos(2*pi*frec_cos*tiempo);  
+                          % Genera la señal coseno con amplitud "amp_cos" y frecuencia "frec_cos".
+                          % Fórmula: A*cos(2πft).
+
+% Señal 2: Seno 0.3 Vpp, 80 Hz
+amp_sen = 0.3/2;          % Se calcula la amplitud pico (Vp = 0.15 V) a partir de Vpp = 0.3.
+frec_sen = 80;            % Frecuencia de la señal seno (80 Hz).
+senal_sen = amp_sen * sin(2*pi*frec_sen*tiempo);  
+                          % Genera la señal seno con amplitud "amp_sen" y frecuencia "frec_sen".
+                          % Fórmula: A*sin(2πft).
+
+% Señal 3: Cuadrada 0.3 V amplitud, 150 Hz
+amp_cuad = 0.3;           % Amplitud pico de la señal cuadrada (0.3 V).
+frec_cuad = 150;          % Frecuencia de la señal cuadrada (150 Hz).
+senal_cuad = amp_cuad * square(2*pi*frec_cuad*tiempo); 
+                          % Genera la señal cuadrada con amplitud "amp_cuad" y frecuencia "frec_cuad".
+                          % La función square() devuelve valores entre -1 y 1.
+
+% Señal suma
+senal_suma = senal_cos + senal_sen + senal_cuad;  
+                          % Se suman las tres señales anteriores para obtener la señal compuesta.
+
+% Graficar
+figure;                   % Crea una nueva ventana de figura para graficar.
+
+subplot(4,1,1);           % Divide la figura en una matriz de 4 filas y 1 columna, selecciona la posición 1.
+plot(tiempo, senal_cos, 'r');  
+                          % Grafica la señal coseno en color rojo.
+title('Señal Coseno 15 Hz, 1.2 Vpp');   % Título de la gráfica.
+xlabel('Tiempo (s)');     % Etiqueta del eje X.
+ylabel('Amplitud (V)');   % Etiqueta del eje Y.
+grid on;                  % Activa la cuadrícula para mejor visualización.
+
+subplot(4,1,2);           % Segunda gráfica (fila 2 de 4).
+plot(tiempo, senal_sen, 'b');  
+                          % Grafica la señal seno en color azul.
+title('Señal Seno 80 Hz, 0.3 Vpp');
+xlabel('Tiempo (s)');
+ylabel('Amplitud (V)');
+grid on;
+
+subplot(4,1,3);           % Tercera gráfica (fila 3 de 4).
+plot(tiempo, senal_cuad, 'm');  
+                          % Grafica la señal cuadrada en color magenta.
+title('Señal Cuadrada 150 Hz, 0.3 V');
+xlabel('Tiempo (s)');
+ylabel('Amplitud (V)');
+grid on;
+
+subplot(4,1,4);           % Cuarta gráfica (fila 4 de 4).
+plot(tiempo, senal_suma, 'g');  
+                          % Grafica la señal suma en color verde.
+title('Suma de Señales');
+xlabel('Tiempo (s)');
+ylabel('Amplitud (V)');
+grid on;
