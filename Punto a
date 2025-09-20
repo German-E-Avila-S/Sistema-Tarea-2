@@ -1,5 +1,5 @@
 % Parámetros de simulación
-tiempo = 0:0.0001:0.05;   % Vector de tiempo desde 0 hasta 0.05 segundos, con incremento de 0.0001 s (0.1 ms).
+tiempo = 0:0.0001:0.10;   % Vector de tiempo desde 0 hasta 0.05 segundos, con incremento de 0.0001 s (0.1 ms).
                           % Este será el eje X para todas las señales.
 
 % Señal 1: Coseno 1.2 Vpp, 15 Hz
